@@ -20,13 +20,10 @@ class _MyStatefulWidgetState extends State<MyApp> {
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Not Functional',
       style: optionStyle,
     ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
+    Playlists(),
   ];
 
   void _onItemTapped(int index) {
@@ -166,3 +163,71 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+class Playlists extends StatelessWidget {
+  const Playlists({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          _buildTitle("Your Playlists"),
+          SizedBox(
+              height: (MediaQuery.of(context).size.height)-220,
+              child:_buildPlaylistsTiles()),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTitle(text) {
+    return Center(child:Container(
+        padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+        child: Text(text,
+          style: TextStyle(fontSize: 22),
+        )));
+  }
+
+  Widget _buildPlaylistsTiles() {
+    return  Material(
+      child: ListView(
+        //scrollDirection: Axis.vertical,
+        children: <Widget>[
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+          _playlistCard("Title", "60"),
+        ],
+      ),
+    );
+  }
+
+
+  Widget _playlistCard(name, songNr){
+    return Card(
+      child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: () {
+            debugPrint('Card tapped.');
+          },
+          child: ListTile(
+            leading: FlutterLogo(size: 56.0),
+            title: Text(name),
+            subtitle: Text(songNr+" songs"),
+            trailing: Icon(Icons.more_vert),
+          ),
+      ),
+    );
+  }
+}
+
